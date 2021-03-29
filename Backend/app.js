@@ -51,4 +51,16 @@ app.get('/lists/:listId/tasks', (req,res) =>
 { Task.find ( { _listId: req.params.listId }).then ((tasks) => res.send(tasks)).catch ((error) => console.log(error));
 });
 
+app.post('/lists/:listId/tasks', (req,res) =>
+{ 
+    (new Task ({ '_listId': req.params.listId, 'title': req.body.title })).save()
+    .then((task) => res.send(task))
+    .catch((error) => console.log(error));
+});
+
+
+
+
+
 app.listen(3000, () => console.log("server is connected on port 3000"));
+
